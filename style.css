@@ -1,6 +1,6 @@
 :root {
     /* tile size */
-    --tile-size: 50px;
+    --tile-size: 40px;
     --key-bg: #f0f0f0;
     --key-text-color: #000;
     --nav-height: 48px;
@@ -75,8 +75,8 @@ h3 {
 
 .f-btn {
     position: absolute;
-    right: 20px;
-    font-size: 12px !important;
+    right: 10px;
+    font-size: 14px !important;
     text-decoration: underline;
     cursor: pointer;
     text-align: left;
