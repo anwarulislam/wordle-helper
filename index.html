@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wordom</title>
+  <title>Wordle Helper</title>
 
   <!-- vuejs -->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -73,12 +73,16 @@
 
 
       <modal v-if="showStep" @close="showStep = null">
-        <h3 slot="header">Remaining Words after Step {{+showStep + 1}} - {{remainingWords[showStep].length}}</h3>
+        <h3 slot="header">Words after Step {{+showStep + 1}} - {{remainingWords[showStep].length}}</h3>
 
         <div slot="body">
           <div class="word-list">
             <template v-for="(word, wordIndex) in remainingWords[showStep]">
               <div class="word">{{ word }}</div>
+            </template>
+
+            <template v-if="!remainingWords[showStep].length">
+              <div class="word">No words left</div>
             </template>
           </div>
         </div>
