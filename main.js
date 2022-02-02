@@ -29,8 +29,7 @@ var app = new Vue({
             ['↵', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '←'],
         ],
         remainingWords: {},
-        currentIndex: 0,
-        correctWord: 'those'
+        currentIndex: 0
     },
     methods: {
         setEvaluation: function (wordIndex, letterIndex) {
@@ -94,25 +93,41 @@ var app = new Vue({
 
             let remainingWords = this.words
 
-            // for on word
-
             for (let i = 0; i < word.length; i++) {
                 let char = word[i];
                 let ev = evaluation[i];
-                if (ev == 'absent') {
-                    remainingWords = remainingWords.cancelCharacters(char);
-                }
-                if (ev == 'present') {
-                    remainingWords = remainingWords.withCharacters(char);
-                }
-                if (ev == 'correct') {
-                    remainingWords = remainingWords.withCharAndIndex(char, i);
+
+                if (!this.isSkippable(word, char, i)) {
+                    remainingWords = (ev == 'correct') ? remainingWords.withCharAndIndex(char, i)
+                        : (ev == 'present') ? remainingWords = remainingWords.withCharacters(char)
+                            : remainingWords.cancelCharacters(char)
                 }
             }
 
             this.words = remainingWords;
             this.remainingWords[this.currentIndex] = remainingWords;
             this.currentIndex++;
+        },
+        isSkippable: function (word, character, k) {
+            let evaluation = this.evaluations[this.currentIndex];
+            let index = [];
+            for (let i = 0; i < word.length; i++) {
+                if (word[i] == character) {
+                    index.push(i);
+                }
+            }
+
+            if (index.length < 2) return false;
+            if (evaluation[k] != 'absent') return false;
+
+            let skippableIndex;
+            for (let i = 0; i < index.length; i++) {
+                if (evaluation[index[i]] === 'absent') {
+                    skippableIndex = index[i];
+                    break;
+                }
+            }
+            return skippableIndex == k;
         },
         showRemainingWords: function (i) {
             console.log(this.remainingWords[i]);
