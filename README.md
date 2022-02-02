@@ -11,5 +11,10 @@ When I play, I try to start with some known and easy word where we have maximum 
 
 It's actually very straightforward. When we write a word in Wordle and submit the word we see three state of characters of that word. It can be *PRESENT*, *ABSENT* or *CORRECT*. Wordle hightlight those state with color. Correct is Green, Present is Orange, and Absent is Gray. After trying in wordle if you want to see all remaining words in *Wordle Helper* you have to write the word and you can change the state of characters of that word by taping on a single character. And after that you have to create on *Next* button to write next word. But, after clicking on a next button you will see a *Show* button to show remaining words of that step in a modal.
 
-![image](https://user-images.githubusercontent.com/26295990/152162355-ead50a50-202a-49a8-9188-bc8c3384fa8c.png)
-![image](https://user-images.githubusercontent.com/26295990/152162427-a69258e7-b464-4030-8d05-522ec52b7dfb.png)
+<a><img src="https://user-images.githubusercontent.com/26295990/152162355-ead50a50-202a-49a8-9188-bc8c3384fa8c.png" align="left" height="auto" width="320" alt="Wordle Helper - Anwarul Islam"></a>
+<a><img src="https://user-images.githubusercontent.com/26295990/152162427-a69258e7-b464-4030-8d05-522ec52b7dfb.png" align="left" height="auto" width="320" alt="Wordle Helper - Anwarul Islam"></a>
+
+
+## Contribution
+
+If you think there is a bug or something you can optimize feel free to make a pull request. And if you love the script give it a star 😉
