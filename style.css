@@ -1,6 +1,6 @@
 :root {
     /* tile size */
-    --tile-size: 60px;
+    --tile-size: 50px;
     --key-bg: #f0f0f0;
     --key-text-color: #000;
     --nav-height: 48px;
