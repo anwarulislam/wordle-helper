@@ -118,11 +118,12 @@ h3 {
 }
 
 .word-list {
+    height: calc(100vh - 100px);
     overflow-y: auto;
 }
 
 .word {
-    display: inline;
+    display: inline-block;
     font-size: 12px;
     margin-bottom: 5px;
     margin-right: 5px;
@@ -155,7 +156,7 @@ h3 {
     position: relative;
     max-width: 500px;
     width: 100%;
-    height: calc(100vh - 100px);
+    height: 100vh;
     margin: 0px auto;
     padding: 24px;
     background-color: #fff;
@@ -175,8 +176,8 @@ h3 {
 
 .close-button {
     position: absolute;
-    right: 10px;
-    top: 10px;
+    right: 20px;
+    top: 20px;
     cursor: pointer;
 }
 

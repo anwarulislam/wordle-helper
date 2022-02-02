@@ -73,7 +73,7 @@
 
 
       <modal v-if="showStep" @close="showStep = null">
-        <!-- <h3 slot="header">custom header</h3> -->
+        <h3 slot="header">Remaining Words after Step {{+showStep + 1}} - {{remainingWords[showStep].length}}</h3>
 
         <div slot="body">
           <div class="word-list">
