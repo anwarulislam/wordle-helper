@@ -2,17 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wordom</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wordom</title>
 
-    <!-- vuejs -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <!-- vuejs -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="style.css">
 
 
-    <script type="text/x-template" id="modal-template">
+  <script type="text/x-template" id="modal-template">
         <transition name="modal">
           <div class="modal-mask">
             <div class="modal-wrapper">
@@ -43,56 +43,90 @@
 
 <body>
 
-    <div id="app">
+  <div id="app">
 
-        <div class="container">
+    <div>
+      <nav>
+        <h3>
+          WORDLE HELPER
+        </h3>
+      </nav>
+    </div>
 
-
-            <modal v-if="showStep" @close="showStep = null">
-                <!-- <h3 slot="header">custom header</h3> -->
-
-                <div slot="body">
-                    <div class="word-list">
-                        <template v-for="(word, wordIndex) in remainingWords[showStep]">
-                            <div class="word">{{ word }}</div>
-                        </template>
-                    </div>
-                </div>
-            </modal>
+    <div class="container">
 
 
-            <template v-for="(word, wordIndex) in boardState">
+      <modal v-if="showStep" @close="showStep = null">
+        <!-- <h3 slot="header">custom header</h3> -->
 
-                <div class="tile-row" v-if="word">
-                    <div class="tile" v-for="(letter, letterIndex) in splitWord(word)"
-                        :class="evaluations[wordIndex][letterIndex]" @click="setEvaluation(wordIndex, letterIndex)">
-                        {{ letter }}
-                    </div>
-
-                    <a class="f-btn show-btn" v-if="currentIndex > wordIndex"
-                        @click="showRemainingWords(wordIndex);">Show</a>
-                    <a class="f-btn" v-if="currentIndex == wordIndex" @click="filterWords()">Next</a>
-                </div>
-
-                <!-- empty word -->
-                <div class="tile-row" v-if="!word">
-                    <div class="tile" v-for="(letter, letterIndex) in [null, null, null, null, null]"
-                        :class="evaluations[wordIndex][letterIndex]" @click="setEvaluation(wordIndex, letterIndex)">
-                        {{ letter }}
-                    </div>
-                </div>
-                <!-- end empty word -->
-
+        <div slot="body">
+          <div class="word-list">
+            <template v-for="(word, wordIndex) in remainingWords[showStep]">
+              <div class="word">{{ word }}</div>
             </template>
-
+          </div>
         </div>
+      </modal>
+
+
+      <div class="board">
+        <template v-for="(word, wordIndex) in boardState">
+
+          <div class="tile-row" v-if="word">
+            <div class="tile" v-for="(letter, letterIndex) in splitWord(word)"
+              :class="evaluations[wordIndex][letterIndex]" @click="setEvaluation(wordIndex, letterIndex)">
+              {{ letter }}
+            </div>
+
+            <a class="f-btn show-btn" v-if="currentIndex > wordIndex" @click="showRemainingWords(wordIndex);">Show</a>
+            <a class="f-btn" v-if="currentIndex == wordIndex" @click="filterWords()">Next</a>
+          </div>
+
+          <!-- empty word -->
+          <div class="tile-row" v-if="!word">
+            <div class="tile" v-for="(letter, letterIndex) in [null, null, null, null, null]"
+              :class="evaluations[wordIndex][letterIndex]" @click="setEvaluation(wordIndex, letterIndex)">
+              {{ letter }}
+            </div>
+          </div>
+          <!-- end empty word -->
+
+        </template>
+      </div>
+
 
     </div>
 
 
-    <script src="./words.js"></script>
-    <script src="./proto.js"></script>
-    <script src="./main.js"></script>
+    <div class="container">
+      <div id="keyboard">
+        <div class="row"><button data-key="q">q</button><button data-key="w">w</button><button
+            data-key="e">e</button><button data-key="r">r</button><button data-key="t">t</button><button
+            data-key="y">y</button><button data-key="u">u</button><button data-key="i">i</button><button
+            data-key="o">o</button><button data-key="p">p</button></div>
+        <div class="row">
+          <div class="spacer half"></div><button data-key="a">a</button><button data-key="s">s</button><button
+            data-key="d">d</button><button data-key="f">f</button><button data-key="g">g</button><button
+            data-key="h">h</button><button data-key="j">j</button><button data-key="k">k</button><button
+            data-key="l">l</button>
+          <div class="spacer half"></div>
+        </div>
+        <div class="row"><button data-key="↵" class="one-and-a-half">enter</button><button
+            data-key="z">z</button><button data-key="x">x</button><button data-key="c">c</button><button
+            data-key="v">v</button><button data-key="b">b</button><button data-key="n">n</button><button
+            data-key="m">m</button><button data-key="←" class="one-and-a-half">
+            <button icon="backspace">Back</button>
+          </button></div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <script src="./words.js"></script>
+  <script src="./proto.js"></script>
+  <script src="./main.js"></script>
 
 </body>
 

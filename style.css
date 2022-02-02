@@ -1,12 +1,39 @@
 :root {
     /* tile size */
-    --tile-size: 30px;
+    --tile-size: 60px;
+    --key-bg: #f0f0f0;
+    --key-text-color: #000;
+    --nav-height: 48px;
 }
 
 body {
     height: 100vh;
     margin: 0;
     font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+}
+
+nav {
+    height: var(--nav-height);
+    background-color: #333;
+    /* border-bottom: 1px solid #ccc; */
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    max-width: 500px;
+    margin: 0 auto;
+    color: white;
+}
+
+h3 {
+    margin: 0;
+}
+
+#app{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .container {
@@ -14,6 +41,11 @@ body {
     max-width: 500px;
     margin: 0 auto;
     background: #fafafa;
+    position: relative;
+    width: 100%;
+}
+
+.board{
     padding: 25px 0;
 }
 
@@ -166,4 +198,93 @@ body {
 .modal-leave-active .modal-container {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
+}
+
+
+
+/* keyboard */
+
+
+:host {
+    height: var(--keyboard-height);
+}
+
+#keyboard {
+    margin: 0 8px;
+    user-select: none;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+    margin: 0 auto 8px;
+    /* https://stackoverflow.com/questions/46167604/ios-html-disable-double-tap-to-zoom */
+    touch-action: manipulation;
+}
+
+button {
+    font-family: inherit;
+    font-weight: bold;
+    border: 0;
+    padding: 0;
+    margin: 0 6px 0 0;
+    height: 58px;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    background-color: var(--key-bg);
+    color: var(--key-text-color);
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
+}
+
+button:focus {
+    outline: none;
+}
+
+button.fade {
+    transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+button:last-of-type {
+    margin: 0;
+}
+
+.half {
+    flex: 0.5;
+}
+
+.one {
+    flex: 1;
+}
+
+.one-and-a-half {
+    flex: 1.5;
+    font-size: 12px;
+}
+
+.two {
+    flex: 2;
+}
+
+button[data-state='correct'] {
+    background-color: var(--key-bg-correct);
+    color: var(--key-evaluated-text-color);
+}
+
+button[data-state='present'] {
+    background-color: var(--key-bg-present);
+    color: var(--key-evaluated-text-color);
+}
+
+button[data-state='absent'] {
+    background-color: var(--key-bg-absent);
+    color: var(--key-evaluated-text-color);
 }
