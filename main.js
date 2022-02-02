@@ -23,6 +23,11 @@ var app = new Vue({
             ['absent', 'absent', 'absent', 'absent', 'absent'],
             ['absent', 'absent', 'absent', 'absent', 'absent'],
         ],
+        keyboard: [
+            ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+            ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+            ['↵', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '←'],
+        ],
         remainingWords: {},
         currentIndex: 0,
         correctWord: 'those'
@@ -58,6 +63,21 @@ var app = new Vue({
                     Vue.set(this.boardState, this.currentIndex, word);
                 }
             }
+
+            // Enter
+            if (e.key == 'Enter') {
+                this.filterWords();
+            }
+        },
+        pressKey: function (key) {
+            let event = { key }
+            if (key == '↵') {
+                event.key = 'Enter';
+            }
+            if (key == '←') {
+                event.key = 'Backspace';
+            }
+            this.writeWord(event);
         },
         splitWord: function (word) {
             let arr = word.split('');
