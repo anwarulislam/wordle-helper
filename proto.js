@@ -18,6 +18,26 @@ Array.prototype.cancelCharacters = function (characters) {
     return result;
 };
 
+Array.prototype.withCharactersButNotInIndex = function (characters, index) {
+    let words = this;
+    var result = [];
+    for (var i = 0; i < words.length; i++) {
+        var word = words[i];
+        var isPresent = false;
+        for (var j = 0; j < characters.length; j++) {
+            var character = characters[j];
+            if (word.includes(character) && word[index] != character) {
+                isPresent = true;
+                break;
+            }
+        }
+        if (isPresent) {
+            result.push(word);
+        }
+    }
+    return result;
+};
+
 Array.prototype.withCharacters = function (characters) {
     let words = this;
     var result = [];

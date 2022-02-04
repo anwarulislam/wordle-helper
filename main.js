@@ -99,7 +99,7 @@ var app = new Vue({
 
                 if (!this.isSkippable(word, char, i)) {
                     remainingWords = (ev == 'correct') ? remainingWords.withCharAndIndex(char, i)
-                        : (ev == 'present') ? remainingWords = remainingWords.withCharacters(char)
+                        : (ev == 'present') ? remainingWords = remainingWords.withCharactersButNotInIndex(char, i)
                             : remainingWords.cancelCharacters(char)
                 }
             }
